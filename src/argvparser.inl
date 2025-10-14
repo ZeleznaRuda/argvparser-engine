@@ -1,3 +1,6 @@
+#pragma once
+#include "../include/argvparser.h"
+
 namespace argvparser {
 
 template<typename Func>

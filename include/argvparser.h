@@ -7,33 +7,26 @@
 #include <string>
 #include <functional>
 #include <iomanip>
+#include <cstdlib>
 
 namespace argvparser {
 
-    // Inicializace parseru s argc a argv
-    void init(int argc, char** argv);
+extern std::unordered_map<std::string, std::function<void()>> definedArguments;
+extern std::unordered_map<std::string, std::string> descriptionsArguments;
+extern int argc_;
+extern char** argv_;
 
-    // Ukončení parseru
-    int end();
+void init(int argc, char** argv);
+int parser(int start = 1);
+std::string get_argument(const int index, const std::string defaultValue = "");
+bool has_argument(const int index);
+std::string get_argument_after(const std::vector<std::string>& names, const std::string defaultValue = "");
 
-    // Definice argumentu s callbackem a popisem
-    template<typename Func>
-    void define_argument(const std::vector<std::string>& names, const Func lambda, const std::string description = "");
-
-    // Získání argumentu podle indexu
-    std::string get_argument(const int index, const std::string defaultValue = "");
-
-    // Zkontroluje, zda existuje argument na indexu
-    bool has_argument(const int index);
-
-    // Získání argumentu následujícího po daném názvu argumentu
-    std::string get_argument_after(const std::vector<std::string>& names, const std::string defaultValue = "");
-
-    // Spuštění parseru argumentů
-    int parser(int i = 1);
+template<typename Func>
+void define_argument(const std::vector<std::string>& names, Func lambda, std::string description);
 
 } // namespace argvparser
 
-#include "../src/argvparser.inl" // šablony definované inline
+#include "../src/argvparser.inl"  
 
 #endif // ARGVPARSER_H
