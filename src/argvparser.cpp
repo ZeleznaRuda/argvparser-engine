@@ -3,9 +3,11 @@
 
 namespace argvparser {
 
+std::unordered_map<std::string, std::function<void()>> definedArguments;
+std::unordered_map<std::string, std::string> descriptionsArguments;
+
 namespace {
-    std::unordered_map<std::string, std::function<void()>> definedArguments;
-    std::unordered_map<std::string, std::string> descriptionsArguments;
+
     int argc_ = 0;
     char** argv_ = nullptr;
 
