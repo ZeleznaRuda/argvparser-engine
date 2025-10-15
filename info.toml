@@ -3,5 +3,5 @@ name = "argvparser"
 version = "1.0.0"
 author = "CLIB"
 description = "argvparser"
-os = ["Windows"] # for test
+os = ["Windows", "Linux", "Darwin"]
 
